@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Cantinho — 2026</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FFB6C1">
+    
+    <!-- Scripts essenciais do React e Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#FFF5F5]">
+
+    <div id="root">
+        <!-- Tela de carregamento -->
+        <div class="flex flex-col items-center justify-center min-h-screen bg-[#FFF5F5]">
+            <p class="text-xl font-medium text-pink-400 animate-pulse">Carregando seu cantinho... ✨</p>
+        </div>
+    </div>
+
+    <!-- Carrega o app.jsx -->
+    <script type="text/babel" src="app.jsx"></script>
+</body>
+</html>
