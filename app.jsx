@@ -103,17 +103,22 @@ const CORES_NOTA = [
   { bg: "#F1E6FB", tape: "#D9C1F1", text: "#6B4C8A" },
 ];
 
-const ROTINA_PADRAO = [
-  { id: 1, hora: "06:30", texto: "Acordar e agradecer", emoji: "🌸", feito: false },
-  { id: 2, hora: "07:00", texto: "Café da manhã", emoji: "☕", feito: false },
-  { id: 3, hora: "08:00", texto: "Trabalho / Estudos", emoji: "📚", feito: false },
-  { id: 4, hora: "12:00", texto: "Almoço", emoji: "🍽️", feito: false },
-  { id: 5, hora: "14:00", texto: "Tarefas do dia", emoji: "✅", feito: false },
-  { id: 6, hora: "18:00", texto: "Exercício", emoji: "🏋️‍♀️", feito: false },
-  { id: 7, hora: "19:30", texto: "Jantar", emoji: "🍲", feito: false },
-  { id: 8, hora: "21:00", texto: "Banho / skincare", emoji: "🧴", feito: false },
-  { id: 9, hora: "22:00", texto: "Leitura (10 páginas)", emoji: "📖", feito: false },
-  { id: 10, hora: "23:00", texto: "Dormir", emoji: "🌙", feito: false },
+const MINHA_ROTINA = [
+  { id: 1, hora: "07:30", texto: "Acordar / café da manhã", emoji: "☕", feito: false },
+  { id: 2, hora: "08:00", texto: "Estudar ATA ou Inglês/Espanhol", emoji: "📚", feito: false },
+  { id: 3, hora: "10:00", texto: "Estudar ATA ou estudar Curso", emoji: "📚", feito: false },
+  { id: 4, hora: "11:30", texto: "Pré-treino / arrumar", emoji: "💄", feito: false },
+  { id: 5, hora: "11:50", texto: "GYM", emoji: "🏋️‍♀️", feito: false },
+  { id: 6, hora: "13:40", texto: "Banho / cabelo", emoji: "🚿", feito: false },
+  { id: 7, hora: "14:00", texto: "Almoço", emoji: "🍽️", feito: false },
+  { id: 8, hora: "15:00", texto: "Inglês / Espanhol ou estudar ATA", emoji: "🗣️", feito: false },
+  { id: 9, hora: "16:00", texto: "Estudar Curso ou estudar ATA", emoji: "💻", feito: false },
+  { id: 10, hora: "17:00", texto: "Lanche", emoji: "☕", feito: false },
+  { id: 11, hora: "18:00", texto: "Shopee video", emoji: "🛍️", feito: false },
+  { id: 12, hora: "21:00", texto: "Jantar", emoji: "🍲", feito: false },
+  { id: 13, hora: "21:30", texto: "Banho / skincare", emoji: "🧴", feito: false },
+  { id: 14, hora: "22:00", texto: "Leitura (10 páginas)", emoji: "📖", feito: false },
+  { id: 15, hora: "23:00", texto: "Dormir", emoji: "🌙", feito: false }
 ];
 
 const CHECKLIST_CATEGORIAS = [
