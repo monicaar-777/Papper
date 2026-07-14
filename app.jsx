@@ -103,22 +103,17 @@ const CORES_NOTA = [
   { bg: "#F1E6FB", tape: "#D9C1F1", text: "#6B4C8A" },
 ];
 
-const MINHA_ROTINA = [
-  { id: 1, hora: "07:30", texto: "Acordar / café da manhã", emoji: "☕", feito: false },
-  { id: 2, hora: "08:00", texto: "Estudar ATA ou Inglês/Espanhol", emoji: "📚", feito: false },
-  { id: 3, hora: "10:00", texto: "Estudar ATA ou estudar Curso", emoji: "📚", feito: false },
-  { id: 4, hora: "11:30", texto: "Pré-treino / arrumar", emoji: "💄", feito: false },
-  { id: 5, hora: "11:50", texto: "GYM", emoji: "🏋️‍♀️", feito: false },
-  { id: 6, hora: "13:40", texto: "Banho / cabelo", emoji: "🚿", feito: false },
-  { id: 7, hora: "14:00", texto: "Almoço", emoji: "🍽️", feito: false },
-  { id: 8, hora: "15:00", texto: "Inglês / Espanhol ou estudar ATA", emoji: "🗣️", feito: false },
-  { id: 9, hora: "16:00", texto: "Estudar Curso ou estudar ATA", emoji: "💻", feito: false },
-  { id: 10, hora: "17:00", texto: "Lanche", emoji: "☕", feito: false },
-  { id: 11, hora: "18:00", texto: "Shopee video", emoji: "🛍️", feito: false },
-  { id: 12, hora: "21:00", texto: "Jantar", emoji: "🍲", feito: false },
-  { id: 13, hora: "21:30", texto: "Banho / skincare", emoji: "🧴", feito: false },
-  { id: 14, hora: "22:00", texto: "Leitura (10 páginas)", emoji: "📖", feito: false },
-  { id: 15, hora: "23:00", texto: "Dormir", emoji: "🌙", feito: false }
+const ROTINA_PADRAO = [
+  { id: 1, hora: "06:30", texto: "Acordar e agradecer", emoji: "🌸", feito: false },
+  { id: 2, hora: "07:00", texto: "Café da manhã", emoji: "☕", feito: false },
+  { id: 3, hora: "08:00", texto: "Trabalho / Estudos", emoji: "📚", feito: false },
+  { id: 4, hora: "12:00", texto: "Almoço", emoji: "🍽️", feito: false },
+  { id: 5, hora: "14:00", texto: "Tarefas do dia", emoji: "✅", feito: false },
+  { id: 6, hora: "18:00", texto: "Exercício", emoji: "🏋️‍♀️", feito: false },
+  { id: 7, hora: "19:30", texto: "Jantar", emoji: "🍲", feito: false },
+  { id: 8, hora: "21:00", texto: "Banho / skincare", emoji: "🧴", feito: false },
+  { id: 9, hora: "22:00", texto: "Leitura (10 páginas)", emoji: "📖", feito: false },
+  { id: 10, hora: "23:00", texto: "Dormir", emoji: "🌙", feito: false },
 ];
 
 const CHECKLIST_CATEGORIAS = [
@@ -397,41 +392,39 @@ function PlannerFofo() {
   const [carregado, setCarregado] = useState(false);
   const [salvando, setSalvando] = useState(false);
 
-  // carrega os dados salvos assim que o app abre
+  // 1. CARREGA OS DADOS SALVOS ASSIM QUE O APP ABRE (Corrigido com localStorage nativo)
   useEffect(() => {
-    (async () => {
-      try {
-        const resultado = await window.storage.get("planner-dados", false);
-        if (resultado && resultado.value) {
-          const d = JSON.parse(resultado.value);
-          if (d.mesAtual !== undefined) setMesAtual(d.mesAtual);
-          if (d.tarefasPorDia) setTarefasPorDia(d.tarefasPorDia);
-          if (d.tarefasGerais) setTarefasGerais(d.tarefasGerais);
-          if (d.notas) setNotas(d.notas);
-          if (d.rotina) setRotina(d.rotina);
-          if (d.checklists) setChecklists(d.checklists);
-          if (d.alimentarFeitos) setAlimentarFeitos(d.alimentarFeitos);
-          if (d.copos !== undefined) setCopos(d.copos);
-          if (d.ataFeitos) setAtaFeitos(d.ataFeitos);
-          if (d.estudarFeitos) setEstudarFeitos(d.estudarFeitos);
-          if (d.euSouFavoritos) setEuSouFavoritos(new Set(d.euSouFavoritos));
-          if (d.deluluFeitos) setDeluluFeitos(d.deluluFeitos);
-          if (d.oratoriaFeitos) setOratoriaFeitos(d.oratoriaFeitos);
-          if (d.oratoriaDiario) setOratoriaDiario(d.oratoriaDiario);
-        }
-      } catch (e) {
-        // primeira vez usando o app — ainda não existe nada salvo
-      } finally {
-        setCarregado(true);
+    try {
+      const resultado = localStorage.getItem("planner-dados");
+      if (resultado) {
+        const d = JSON.parse(resultado);
+        if (d.mesAtual !== undefined) setMesAtual(d.mesAtual);
+        if (d.tarefasPorDia) setTarefasPorDia(d.tarefasPorDia);
+        if (d.tarefasGerais) setTarefasGerais(d.tarefasGerais);
+        if (d.notas) setNotas(d.notas);
+        if (d.rotina) setRotina(d.rotina);
+        if (d.checklists) setChecklists(d.checklists);
+        if (d.alimentarFeitos) setAlimentarFeitos(d.alimentarFeitos);
+        if (d.copos !== undefined) setCopos(d.copos);
+        if (d.ataFeitos) setAtaFeitos(d.ataFeitos);
+        if (d.estudarFeitos) setEstudarFeitos(d.estudarFeitos);
+        if (d.euSouFavoritos) setEuSouFavoritos(new Set(d.euSouFavoritos));
+        if (d.deluluFeitos) setDeluluFeitos(d.deluluFeitos);
+        if (d.oratoriaFeitos) setOratoriaFeitos(d.oratoriaFeitos);
+        if (d.oratoriaDiario) setOratoriaDiario(d.oratoriaDiario);
       }
-    })();
+    } catch (e) {
+      console.error("Erro ao carregar do localStorage:", e);
+    } finally {
+      setCarregado(true);
+    }
   }, []);
 
-  // salva automaticamente sempre que algo muda (com um pequeno atraso)
+  // 2. SALVA AUTOMATICAMENTE SEMPRE QUE ALGO MUDA (Corrigido com localStorage nativo)
   useEffect(() => {
     if (!carregado) return;
     setSalvando(true);
-    const timeout = setTimeout(async () => {
+    const timeout = setTimeout(() => {
       try {
         const dados = {
           mesAtual,
@@ -449,9 +442,9 @@ function PlannerFofo() {
           oratoriaFeitos,
           oratoriaDiario,
         };
-        await window.storage.set("planner-dados", JSON.stringify(dados), false);
+        localStorage.setItem("planner-dados", JSON.stringify(dados));
       } catch (e) {
-        // se der erro ao salvar, os dados continuam funcionando nesta sessão
+        console.error("Erro ao salvar no localStorage:", e);
       } finally {
         setSalvando(false);
       }
@@ -1025,7 +1018,7 @@ function Notas({ notas, setNotas }) {
         </div>
       </div>
 
-      {notas.length === 0 ? (
+      {notes_count := notas.length; notes_count === 0 ? (
         <div className="text-center py-10">
           <Cloud size={30} color="#E6D5E0" className="mx-auto mb-2" />
           <p className="text-sm text-[#C9A9BE] italic">Nenhuma nota por aqui ainda</p>
@@ -1564,7 +1557,7 @@ function PlanoEstudoATA({ feitos, setFeitos }) {
     <CardBase>
       <TituloSecao icon={Target} cor="#D9B36B">Plano de Estudo — ATA</TituloSecao>
       <p style={{ fontFamily: "'Nunito', sans-serif", color: "#6B5B73" }} className="text-sm mb-1">
-        <strong>Objetivo:</strong> {PLANO_ESTUDO_ATA.objetivo}
+        <strong>Objetivo:</strong> {PLANO_ESTUDO_ATA.objective || PLANO_ESTUDO_ATA.objetivo}
       </p>
       <p style={{ color: "#B7A6BF" }} className="text-xs mb-4 italic">Foco hoje, conquista amanhã ✨</p>
 
